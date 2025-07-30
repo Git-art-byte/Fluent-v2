@@ -12,12 +12,12 @@ Load **Fluent**'s library through GitHub:
 
 ```lua
 local Fluent = loadstring(game:HttpGet(
-  "https://github.com/mr-suno/Fluent/releases/latest/download/main.lua"
+  "https://github.com/sily-lily/Fluent/releases/latest/download/main.lua"
 ))()
 ```
 
 ### 📜 Usage
-### [Example Script](https://github.com/mr-suno/Fluent/blob/master/Example.lua)
+### [Example Script](https://github.com/sily-lily/Fluent/blob/master/Example.lua)
 * Showcases how to use the UI library
 
 ### Credits
@@ -28,4 +28,4 @@ local Fluent = loadstring(game:HttpGet(
 - [7kayoh/Acrylic](https://github.com/7kayoh/Acrylic) - Porting richie0866's acrylic module to lua
 - [Latte Softworks & Kotera](https://discord.gg/rMMByr4qas) - Bundler
 
-- [Suno](https://discord.gg/XJMpTcyaUY) - Fixing UI bugs
+- [Suno](https://discord.gg/luau) - Fixing UI bugs
