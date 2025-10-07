@@ -292,25 +292,40 @@ local SaveManager = {} do
 			SaveManager.Options.SaveManager_ConfigList:SetValue(nil)
 		end})
 
-		local AutoloadButton
-		AutoloadButton = section:AddButton({Title = "Set as autoload", Description = "Current autoload config: none", Callback = function()
-			local name = SaveManager.Options.SaveManager_ConfigList.Value
-			writefile(self.Folder .. "/settings/autoload.txt", name)
-			AutoloadButton:SetDesc("Current autoload config: " .. name)
-			self.Library:Notify({
-				Title = "Interface",
-				Content = "Config loader",
-				SubContent = string.format("Set %q to auto load", name),
-				Duration = 7
-			})
-		end})
+		local Toggle = section:AddToggle("AutoloadToggle", {
+    Title = "Auto Load Config",
+    Default = false,
+    Description = "Toggle to set/unset autoload config"
+})
 
-		if isfile(self.Folder .. "/settings/autoload.txt") then
-			local name = readfile(self.Folder .. "/settings/autoload.txt")
-			AutoloadButton:SetDesc("Current autoload config: " .. name)
-		end
+Toggle:OnChanged(function(state)
+    local name = SaveManager.Options.SaveManager_ConfigList.Value
+    local autoloadPath = self.Folder .. "/settings/autoload.txt"
 
-		SaveManager:SetIgnoreIndexes({ "SaveManager_ConfigList", "SaveManager_ConfigName" })
+    if state then
+        writefile(autoloadPath, name)
+        self.Library:Notify({
+            Title = "Interface",
+            Content = "Config loader",
+            SubContent = string.format("Set %q to auto load", name),
+            Duration = 7
+        })
+    else
+        if isfile(autoloadPath) then
+            delfile(autoloadPath)
+        end
+        self.Library:Notify({
+            Title = "Interface",
+            Content = "Config loader",
+            SubContent = "Autoload has been disabled",
+            Duration = 7
+        })
+    end
+end)
+
+-- ตั้งค่าเริ่มต้นเป็นปิดไว้ก่อน
+Options.AutoloadToggle:SetValue(false)
+
 	end
 
 	SaveManager:BuildFolderTree()
