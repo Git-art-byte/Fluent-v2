@@ -76,7 +76,7 @@ local InterfaceManager = {} do
 			end
 		})
 
-        InterfaceTheme:SetValue(Settings.Theme)
+        InterfaceTheme:SetValue(Library.Theme)
 	
 		if Library.UseAcrylic then
 			section:AddToggle("AcrylicToggle", {
